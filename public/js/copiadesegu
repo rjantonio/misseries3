@@ -1,0 +1,111 @@
+
+//Función que se ejecuta siempre
+$(document).ready(function(){
+
+    var enviar = $('#enviar');
+    var formulario = $('#formulario');
+
+    enviar.click(function(e) {
+        e.preventDefault();
+        
+
+        formulario.validate( {
+            rules: {
+                titulo : {
+                    required: true,
+                    minsize: 3,
+                },
+            },
+            messages : {
+                titulo : {
+                    required: "Este campo es obligatorio",
+                    minsize: "hola",
+                },
+            },
+            submitHandler: function() {
+
+                $.ajax({
+                    type: formulario.attr('method'),
+                    url: formulario.attr('action'),
+                    data: formulario.serialize(),
+                    success: function () {
+                        //valida el formulario
+                        console.log("form validado");
+        
+        
+                        /* if ($("#titulo").val()=="") {
+                            alert("El campo titulo no puede estar vacío.");
+                            $("#titulo").focus(); //Coloca el foco de escritura en el campo título.
+                            return false;
+                        } */
+        
+                        
+        
+                    },
+                    error: function (data) {
+                        console.log('error');
+                        console.log(data);
+                    },
+                });
+
+            }
+        });
+
+        
+    })
+
+
+});
+
+//copia dos
+
+
+//Función que se ejecuta siempre
+
+$(document).ready(function(){
+
+    var enviar = $('#enviar');
+
+    enviar.click(function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: enviar.attr('method'),
+            url: enviar.attr('action'),
+            data: enviar.serialize(),
+            success: function () {
+                //valida el formulario
+
+
+                if ($("#titulo").val()=="") {
+                    alert("El campo titulo no puede estar vacío.");
+                    $("#titulo").focus(); //Coloca el foco de escritura en el campo título.
+                    //return false;
+                }
+
+                /* $('#formulario').validate({
+                    rules: {
+                        titulo : {
+                            required: true,
+                            minlength: 1,
+                        },
+                    },
+                    messages : {
+                        name : {
+                            required: "Este campo es obligatorio",
+                        },
+                    },
+                }); */
+
+            },
+            error: function (data) {
+                console.log('error');
+                console.log(data);
+            },
+        });
+    })
+
+
+});
+
+    
